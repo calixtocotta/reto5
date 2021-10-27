@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <link rel="stylesheet" href="estilos/estilo.css">
+    <title>Category</title>
+    <link rel="icon" href="/iconos/category.png" />
+</head>
+
+<body>
+    <div class="header d-flex">
+        <div class=""><a><img id="photo"> <span id="user"></span></a></div>
+        <div class="">
+            <a href="menu.html">Menu</a>
+            <a href="category.html" class="active">Category</a>
+            <a href="skate.html">Skate</a>
+            <a onclick="location.href='message.html'">Message</a>
+            <a href="client.html" >Client</a>
+            <a href="reservation.html">Reservation</a>
+            <a href="score.html">Score</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="title text-center">Lista de categorias</h1>
+        <div class="card" id="resultado"></div>
+        <br>
+        <br>
+        <!-- <button onclick="traerInformacion()">Consultar</button> -->
+        <br>
+        <div class="card">
+            <h4 id="validarCampos" class="text-center" style="color: rgba(255, 255, 255, 0.767)"><span>&#160</span></h4>
+            <div class="mb-10px d-flex text-center">
+                <div>
+                    <input class="registro" type="number" id="id" placeholder="id" required disabled>
+                </div>
+                <div>
+                    <input class="registro" type="text" id="name" placeholder="nombre" required>
+                </div>
+                <div>
+                    <input class="registro" type="text" id="description" placeholder="descripción" required>
+                </div>
+                
+            </div>
+            <diV class="text-center" id="btn-actualizar">
+                <button class="btn-info btn-gradient mb-10px mr-10px" id="btn-guardar" onclick="validar(1)">Guardar</button>
+                <button class="btn-info btn-gradient mb-10px" id="actualizar" onclick="validar(2)">Actualizar</button>
+            </diV>
+        </div>
+
+    </div>
+    <div class="water-mark">Powered by NG ⚡</div>
+
+    <!-- TODOS LOS MALDITOS SCRIPTS DEBEN IR POR ACÁ, PERROHP -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/misFuncionesCategory.js"></script>
+    <script type="text/javascript" src="js/session.js"></script>
+    <script>
+        $(document).ready(function(){
+            traerInformacion();
+            data_user();
+            $("id").hide()
+        })
+        
+    </script>
+
+</body>
+
+</html>
