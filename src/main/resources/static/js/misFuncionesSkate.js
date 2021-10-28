@@ -4,7 +4,7 @@ function traerInformacion(){location.reload(true);}
 
 function itemsCategory(){
     $.ajax({
-        url:"http://localhost:8080/api/Category/all",
+        url:"http://localhost:80/api/Category/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -23,7 +23,7 @@ function itemsCategory(){
 function traerInformacion(){
     $("#resultado").html("<p class='loader text-center'>Cargando...</p>"); 
     $.ajax({
-        url:"http://localhost:8080/api/Skate/all",
+        url:"http://localhost:80/api/Skate/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -65,7 +65,7 @@ function pintarRespuesta(items){
 
 function Editar(items){
     $.ajax({
-        url:"http://localhost:8080/api/Skate/"+items,
+        url:"http://localhost:80/api/Skate/"+items,
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -124,7 +124,7 @@ function guardarInformacion(){
     //console.log(dataToSend);
     
     $.ajax({
-        url: "http://localhost:8080/api/Skate/save",
+        url: "http://localhost:80/api/Skate/save",
         type: "POST",
         data: dataToSend,
         contentType:"application/JSON",
@@ -163,7 +163,7 @@ function editarInformacion(){
     //console.log();
 
     $.ajax({
-        url: "http://localhost:8080/api/Skate/update",
+        url: "http://localhost:80/api/Skate/update",
         type: "PUT",
         data: dataToSend,
         contentType:"application/JSON",
@@ -185,7 +185,7 @@ function editarInformacion(){
 function borrarElemento(idElemento){
 
     $.ajax({
-        url: "http://localhost:8080/api/Skate/"+idElemento,
+        url: "http://localhost:80/api/Skate/"+idElemento,
         type: "DELETE",
         data: dataToSend,
         contentType:"application/JSON",

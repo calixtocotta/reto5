@@ -5,12 +5,12 @@ setInterval("traerInformacion()",60000);
 function traerInformacion(){
     $("#resultado").html("<p class='loader text-center'>Cargando...</p>"); 
     $.ajax({
-        url:"https://g8f8de2cd8423f5-dbreto1.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message",
+        url:"http://localhost:80/api/Message/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
             console.log(respuesta);
-            pintarRespuesta(respuesta.items);
+            pintarRespuesta(respuesta);
         }
     });
 }
