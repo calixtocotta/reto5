@@ -6,42 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=2.0">
     <link rel="stylesheet" href="estilos/estilo.css">
-    <title>Registrar message</title>
+    <title>Message</title>
+    <link rel="icon" href="/iconos/message.png" />
 </head>
 
 <body>
     <div class="header d-flex">
-        <div class="">| MENSAJE</div>
+        <div class=""><a><img id="photo"> <span id="user"></span></a></div>
         <div class="">
-            <a href="Menu.html">Menu</a>
-            <a href="category.html" >Category</a>
+            <a href="menu.html">Menu</a>
+            <a href="category.html">Category</a>
             <a href="skate.html">Skate</a>
-            <a href="message.html" class="active">Message</a>
-            <a href="clien.html" >Client</a>
+            <a onclick="location.href='message.html'" class="active">Message</a>
+            <a href="client.html" >Client</a>
             <a href="reservation.html">Reservation</a>
             <a href="score.html">Score</a>
         </div>
     </div>
     <div class="container">
-        <h1 class="title text-center">Lista de mensajes</h1>
+        <h1 class="title text-center">Lista de mensaje</h1>
         <div class="card" id="resultado"></div>
         <br>
         <br>
         <!-- <button onclick="traerInformacion()">Consultar</button> -->
         <br>
         <div class="card">
+            <h4 id="validarCampos" class="text-center" style="color: rgba(255, 255, 255, 0.767)"><span>&#160</span></h4>
             <div class="mb-10px d-flex text-center">
                 <div>
-                    <input class="idM" type="number" id="id" placeholder="id" required >
+                    <input class="registro" type="number" id="idMessage" placeholder="idMessage" required disabled>
                 </div>
                 <div>
-                    <input class="messagetextM" type="text" id="messagetext" placeholder="messagetext" required>
+                    <input class="registro" type="text" id="messageText" placeholder="messageText" required>
+                </div>
+                <div id="resultado-skate">
+                
+                </div>
+                <div id="resultado-client">
+                
                 </div>
                 
             </div>
-            <diV class="text-center">
-                <button class="btn-info btn-gradient mb-10px mr-10px" onclick="validar()">Guardar</button>
-                <button class="btn-info btn-gradient mb-10px" onclick="editarInformacion()">Actualizar</button>
+            <diV class="text-center" id="btn-actualizar">
+                <button class="btn-info btn-gradient mb-10px mr-10px" id="btn-guardar" onclick="validar(1)">Guardar</button>
+                <button class="btn-info btn-gradient mb-10px" id="actualizar" onclick="validar(2)">Actualizar</button>
             </diV>
         </div>
 
@@ -51,6 +59,17 @@
     <!-- TODOS LOS MALDITOS SCRIPTS DEBEN IR POR ACÁ, PERROHP -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/misFuncionesMessage.js"></script>
+    <script type="text/javascript" src="js/session.js"></script>
+    <script>
+        $(document).ready(function(){
+            traerInformacion();
+            data_user();
+            $("id").hide()
+            itemsClient();
+            itemsSkate();
+        })
+        
+    </script>
 
 </body>
 

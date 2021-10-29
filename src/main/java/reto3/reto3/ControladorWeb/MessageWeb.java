@@ -1,5 +1,5 @@
-
 package reto3.reto3.ControladorWeb;
+
 import reto3.reto3.Servicios.serviciosMessage;
 import java.util.List;
 import java.util.Optional;
@@ -18,16 +18,19 @@ import reto3.reto3.Entidad.Message;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/api/Message")
 public class MessageWeb {
+
     @Autowired
     private serviciosMessage servicios;
+
     @GetMapping("/all")
-    public List <Message> getMessage(){
+    public List<Message> getMessage() {
         return servicios.getAll();
     }
+
     @GetMapping("/{id}")
     public Optional<Message> getMessage(@PathVariable("id") int id) {
         return servicios.getMessage(id);
@@ -38,15 +41,15 @@ public class MessageWeb {
     public Message save(@RequestBody Message message) {
         return servicios.save(message);
     }
-    
+
     @PutMapping("/update")
-    public Message update(@RequestBody Message message){
+    public Message update(@RequestBody Message message) {
         return servicios.update(message);
     }
-    
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int carId){
+    public boolean delete(@PathVariable("id") int carId) {
         return servicios.deleteMessage(carId);
     }
 }

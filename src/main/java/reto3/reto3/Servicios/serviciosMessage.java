@@ -13,65 +13,63 @@ import reto3.reto3.Repositorio.RepositorioMessage;
 
 @Service
 public class serviciosMessage {
-     @Autowired
+
+    @Autowired
     private RepositorioMessage metodosCrud;
-    
-    public List<Message> getAll(){
-         return metodosCrud.getAll();
+
+    public List<Message> getAll() {
+        return metodosCrud.getAll();
     }
-    
-    public Optional<Message> getMessage(int id){
+
+    public Optional<Message> getMessage(int id) {
         return metodosCrud.getMessage(id);
     }
-    
-    
-    public Message save(Message message){
-        if(message.getIdMessage()==null){
+
+    public Message save(Message message) {
+        if (message.getIdMessage() == null) {
             return metodosCrud.save(message);
-        }else{
-            Optional<Message> evt=metodosCrud.getMessage(message.getIdMessage());
-            if(evt.isEmpty()){
-            return metodosCrud.save(message);
-            }else{
+        } else {
+            Optional<Message> evt = metodosCrud.getMessage(message.getIdMessage());
+            if (evt.isEmpty()) {
+                return metodosCrud.save(message);
+            } else {
                 return message;
             }
-        
-        
+
         }
-    
+
     }
-    
-    public Message update(Message message){
-        if(message.getIdMessage()==null){
+
+    public Message update(Message message) {
+        if (message.getIdMessage() == null) {
             return metodosCrud.save(message);
-        }else{
-            Optional<Message> e=metodosCrud.getMessage(message.getIdMessage());
-            if(!e.isEmpty()){
-                if(message.getMessageText()!=null){
+        } else {
+            Optional<Message> e = metodosCrud.getMessage(message.getIdMessage());
+            if (!e.isEmpty()) {
+                if (message.getMessageText() != null) {
                     e.get().setMessageText(message.getMessageText());
                 }
-                if(message.getClient()!=null){
+                if (message.getClient() != null) {
                     e.get().setClient(message.getClient());
                 }
-                if(message.getSkate()!=null){
+                if (message.getSkate() != null) {
                     e.get().setSkate(message.getSkate());
                 }
-                
+
                 return e.get();
-            }else{
+            } else {
                 return message;
             }
         }
     }
-    
-    public boolean deleteMessage(int id){
-        
-        
-        Boolean aBoolean=getMessage(id).map(message -> {
+
+    public boolean deleteMessage(int id) {
+
+        Boolean aBoolean = getMessage(id).map(message -> {
             metodosCrud.delete(message);
             return true;
-        }).orElse(aBoolean=false);
-        
+        }).orElse(aBoolean = false);
+
         return aBoolean;
     }
 }

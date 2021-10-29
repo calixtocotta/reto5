@@ -15,19 +15,18 @@ import javax.persistence.Table;
 public class Message implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Integer idMessage;
     private String messageText;
-    
-    
+
     @ManyToOne
-    @JoinColumn(name ="skate")
-    @JsonIgnoreProperties(value={"messages","reservations"})
+    @JoinColumn(name = "skate")
+    @JsonIgnoreProperties(value = {"messages", "reservations"})
     private Skate skate;
-    
+
     @ManyToOne
-    @JoinColumn(name ="client")
-    @JsonIgnoreProperties(value={"messages","reservations"})
+    @JoinColumn(name = "client")
+    @JsonIgnoreProperties(value = {"messages", "reservations"})
     private Client client;
 
     public Integer getIdMessage() {
@@ -61,8 +60,5 @@ public class Message implements Serializable {
     public void setClient(Client client) {
         this.client = client;
     }
-
-
-    
 
 }

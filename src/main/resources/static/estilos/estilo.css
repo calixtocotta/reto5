@@ -70,9 +70,7 @@ table > thead th{
 table > tbody > tr:not(:last-child){
     border-bottom: 1px solid #d1d1d142;
 }
-table > tbody > tr:hover{
-    background-color: #ffffff62;
-}
+
 table > tbody > tr>td{
     padding: 10px;
     overflow: hidden;
@@ -194,7 +192,8 @@ table {
     border-radius: 20px;
     text-decoration: none;
 }
-.header a:hover{
+.header a:hover, 
+.options > div > table  tr > td:hover{
     background-color: rgba(255, 255, 255, 0.425);
 }
 .header a.active{
@@ -252,3 +251,35 @@ img {
     width: 30px;
     left: 30px;
 }
+
+tr {
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 700px) {
+    table {
+        width:100%;
+    }
+    thead {
+        display: none;
+    }
+    tr:nth-of-type(2n) {
+        background-color: inherit;
+    }
+    tr td:first-child {
+        background: #f0f0f0;
+        font-weight:bold;
+        font-size:1.3em;
+    }
+    tbody td {
+        display: block;
+        text-align:center;
+    }
+    tbody td:before {
+        content: attr(data-th);
+        display: block;
+        text-align:center;
+    }
+}
+

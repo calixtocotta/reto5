@@ -1,0 +1,3 @@
+ssh -i ssh-key-2021-10-09.key opc@144.22.228.79
+
+mvn clean package -DskipTests

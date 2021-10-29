@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="estilos/estilo.css">
     </head>
     <body>
-        <div class="header d-flex">
+        <div class="header d-flex" id="menu">
             <div class=""><a><img id="photo"> <span id="user"></span></a></div>
             <div class="">
                 <a href="menu.html" class="active">Menu</a>
@@ -30,47 +30,48 @@
         <br>
         <br>
 
-        <div class="options" align="center" alt="" class="d-flex">
+        <div class="options" align="center" alt="">
             <div class="d-flex" id="img-contenedor">
                 <table borde="3" align="center">
                     <tr align="center">
-                        <td>
-                            <img class="imagenes" src="iconos/category.png" onclick="location.href='category.html'">
+                        <td onclick="location.href='category.html'">
+                            <div style="height: 100px;">
+                                <img class="imagenes" src="iconos/category.png">
+                            </div>
+                                <h1>Category</h1>
+
                         </td>
-                        <td>
-                            <img class="imagenes" src="iconos/skate.png" onclick="location.href='skate.html'">
+                        <td onclick="location.href='skate.html'">
+                            <div style="height: 100px;">
+                                <img class="imagenes" src="iconos/skate.png">
+                            </div>
+                                <h1>Skate</h1>
                         </td>
-                        <td>
-                            <img class="imagenes" src="iconos/client.png" onclick="location.href='client.html'">
+                        <td onclick="location.href='client.html'">
+                            <div style="height: 100px;">
+                                <img class="imagenes" src="iconos/client.png">
+                            </div>
+                                <h1>Client</h1>
                         </td>
-                        <td>
-                            <img class="imagenes" src="iconos/message.png">
+                        <td onclick="location.href='message.html'">
+                            <div style="height: 100px;">
+                                <img class="imagenes" src="iconos/message.png">
+                            </div>
+                                <h1>Message</h1>
                         </td>
-                        <td>
-                            <img class="imagenes" src="iconos/recervation.png">
+                        <td onclick="location.href='reservation.html'">
+                            <div style="height: 100px;">
+                                <img class="imagenes" src="iconos/reservation.png">
+                            </div>
+                                <h1>Reservation</h1>
+                            
                         </td>
-                        <td>
-                            <img class="imagenes" src="iconos/score2.png">
-                        </td>
-                    </tr>
-                    <tr align="center">
-                        <td>
-                            <h1>Category</h1>
-                        </td>
-                        <td>
-                            <h1>Skate</h1>
-                        </td>
-                        <td>
-                            <h1>Client</h1>
-                        </td>
-                        <td>
-                            <h1>Message</h1>
-                        </td>
-                        <td>
-                            <h1>Reservation</h1>
-                        </td>
-                        <td>
-                            <h1>Score</h1>
+                        <td onclick="location.href='score.html'">
+                            <div style="height: 100px;">
+                                <img class="imagenes" src="iconos/score2.png">
+                            </div>
+                                <h1>Score</h1>
+                            
                         </td>
                     </tr>
                 </table>

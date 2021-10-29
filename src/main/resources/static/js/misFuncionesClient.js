@@ -5,7 +5,7 @@
 function traerInformacion(){
     $("#resultado").html("<p class='loader text-center'>Cargando...</p>"); 
     $.ajax({
-        url:"http://localhost:8080/api/Client/all",
+        url:"http://localhost:80/api/Client/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -42,7 +42,7 @@ function pintarRespuesta(items){
 
 function Editar(items){
     $.ajax({
-        url:"http://localhost:8080/api/Client/"+items,
+        url:"http://localhost:80/api/Client/"+items,
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -93,7 +93,7 @@ function guardarInformacion(){
     let dataToSend=JSON.stringify(myData);
     //console.log(dataToSend);
     $.ajax({
-        url: "http://localhost:8080/api/Client/save",
+        url: "http://localhost:80/api/Client/save",
         type: "POST",
         data: dataToSend,
         contentType:"application/JSON",
@@ -127,7 +127,7 @@ function editarInformacion(){
     };
     let dataToSendE=JSON.stringify(myDataEditar);
     $.ajax({
-        url:"http://localhost:8080/api/Client/update",
+        url:"http://localhost:80/api/Client/update",
         type:"PUT",
         data:dataToSendE,
         contentType:"application/JSON",
@@ -153,7 +153,7 @@ function editarInformacion(){
 function borrarElemento(idElemento){
     let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url: "http://localhost:8080/api/Client/"+idElemento,
+        url: "http://localhost:80/api/Client/"+idElemento,
         type: "DELETE",
         data: dataToSend,
         contentType:"application/JSON",

@@ -79,11 +79,6 @@
 	  <artifactId>spring-boot-test</artifactId>
 	  <type>jar</type>
 	 </dependency>
-	 <dependency>
-	  <groupId>junit</groupId>
-	  <artifactId>junit</artifactId>
-	  <type>jar</type>
-	 </dependency>
 	</dependencies>
 
 	<build>
