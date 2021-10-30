@@ -14,7 +14,6 @@ function itemsSkate(){
             mySelect+="<option value='null' id='select-skate'>Selecione una patineta</option>"
             for(i=0;i<respuesta.length;i++){
                 mySelect+="<option value="+respuesta[i].id+" id='skate-"+respuesta[i].id+"'>"+ respuesta[i].name+"</option>";
-                
             }
             mySelect+="</select>"
             $("#resultado-skate").html(mySelect); 
@@ -36,15 +35,24 @@ function itemsClient(){
             }
             mySelect+="</select>"
             $("#resultado-client").html(mySelect); 
-            $("#idMessage").hide()
+            $("#idReservation").hide()
         }
     });
 }
 
 function traerInformacion(){
     $("#resultado").html("<p class='loader text-center'>Cargando...</p>");
+    var objFecha = new Date;
+    var dia  = objFecha.getDate();
+    var mes  = objFecha.getMonth()+1;
+    var anio = objFecha.getFullYear();
+    // Devuelve: '1/2/2011':
+    //console.log( dia + "/" + mes + "/" + anio );
+    $("#startDate").attr("min",anio+"-"+mes+"-"+dia)
+    $("#devolutionDate").attr("min",anio+"-"+mes+"-"+dia)
+    
     $.ajax({
-        url:"http://144.22.228.79:80/api/Message/all",
+        url:"http://144.22.228.79:80/api/Reservation/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -58,20 +66,23 @@ function traerInformacion(){
 function pintarRespuesta(items){
     let myTable="<table id='informacion'>";
     let tableHeader = `<thead><tr>
-    <th>MESSAGETEXT</th>
+    <th>STARTDATE</th>
+    <th>DEVOLUTIONDATE</th>
     <th>SKATE</th>
     <th>CLIENT</th>
+    <th>STATUS</th>
     <th></th>
     </thead></tr>`;
     myTable += tableHeader;
 
     for (i=0; i<items.length; i++ ) {
-        
         myTable+="<tr>";
-        myTable+="<td>"+items[i].messageText+"</td>";
+        myTable+="<td>"+items[i].startDate+"</td>";
+        myTable+="<td>"+items[i].devolutionDate+"</td>";
         myTable+="<td>"+items[i].skate.name+"</td>";
         myTable+="<td>"+items[i].client.name+"</td>";
-        myTable+="<td> <button class='mx-auto btn-danger btn-gradient' onclick='borrarElemento("+items[i].idMessage+")'>Borrar</button> <button class='mx-auto btn-danger btn-gradient' id='editar' onclick='Editar("+items[i].idMessage+")'>Editar</button> </td>";
+        myTable+="<td>"+items[i].status+"</td>";
+        myTable+="<td> <button class='mx-auto btn-danger btn-gradient' onclick='borrarElemento("+items[i].idReservation+")'>Borrar</button> <button class='mx-auto btn-danger btn-gradient' id='editar' onclick='Editar("+items[i].idReservation+")'>Editar</button> </td>";
         myTable+="</tr>";
     }
     myTable+="</table>";
@@ -81,14 +92,38 @@ function pintarRespuesta(items){
 function Editar(items){
     //console.log(items);
     $.ajax({
-        url:"http://144.22.228.79:80/api/Message/"+items,
+        url:"http://144.22.228.79:80/api/Reservation/"+items,
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
+            let fechaStartDate="";
+            //console.log(respuesta.startDate[3]);
+            for (i=0; i < respuesta.startDate.length; i++) {
+                //console.log(respuesta.startDate[i]);
+                if(respuesta.startDate[i]=="T"){
+                    break;
+                }else{
+                    fechaStartDate+=respuesta.startDate[i];
+                }
+            }
+            let fechaDevolutionDate="";
+            //console.log(respuesta.startDate[3]);
+            for (i=0; i < respuesta.devolutionDate.length; i++) {
+                //console.log(respuesta.startDate[i]);
+                if(respuesta.devolutionDate[i]=="T"){
+                    break;
+                }else{
+                    fechaDevolutionDate+=respuesta.devolutionDate[i];
+                }
+            }
+            //console.log(fechaStartDate);
+            
+            
             $("#skate-"+respuesta.skate.id).attr("selected", true)
             $("#client-"+respuesta.client.idClient).attr("selected", true)
-            $("#messageText").val(respuesta.messageText),
-            $("#idMessage").val(respuesta.idMessage),
+            $("#startDate").val(fechaStartDate),
+            $("#devolutionDate").val(fechaDevolutionDate),
+            $("#idReservation").val(respuesta.idReservation),
 
             $("#btn-actualizar").show()
             $("#btn-guardar").hide()
@@ -98,7 +133,7 @@ function Editar(items){
 
 function validar(opcion){
     
-    if ($('#messageText').val().length == 0) {
+    if ($('#startDate').val().length == 0 || $('#devolutionDate').val().length == 0) {
         $("#validarCampos").html("<h4 style='color: red'>Todos los campos son necesarios</h4>");
         if($("#skate").val() == "null"){
             $("#validarCampos").html("<h4 style='color: red'>Selecione una patineta</h4>");
@@ -127,14 +162,15 @@ function validar(opcion){
 
 function guardarInformacion(){
     let myData={
-        messageText:$("#messageText").val(),
+        startDate:$("#startDate").val(),
+        devolutionDate:$("#devolutionDate").val(),
         skate:{"id":$("#skate").val()},
         client:{"idClient":$("#client").val()}
     };
     let dataToSend=JSON.stringify(myData);
     //console.log(dataToSend);
     $.ajax({
-        url: "http://144.22.228.79:80/api/Message/save",
+        url: "http://144.22.228.79:80/api/Reservation/save",
         type: "POST",
         data: dataToSend,
         contentType:"application/JSON",
@@ -167,15 +203,16 @@ function guardarInformacion(){
 function editarInformacion(){
     
     let myDataEditar={
-        idMessage:$("#idMessage").val(),
-        messageText:$("#messageText").val(),
+        idReservation:$("#idReservation").val(),
+        startDate:$("#startDate").val(),
+        devolutionDate:$("#devolutionDate").val(),
         skate:{"id":$("#skate").val()},
         client:{"idClient":$("#client").val()}
     };
     let dataToSendE=JSON.stringify(myDataEditar);
-    console.log(dataToSendE);
+    //console.log(dataToSendE);
     $.ajax({
-        url:"http://144.22.228.79:80/api/Message/update",
+        url:"http://144.22.228.79:80/api/Reservation/update",
         type:"PUT",
         data:dataToSendE,
         contentType:"application/JSON",
@@ -196,20 +233,22 @@ function editarInformacion(){
         },
         error:function(respuestaE) {
             console.log(respuestaE);
-            $("#validarCampos").html("<h4 style='color: red'>El usuario no se encuentra registrado</h4>");
+            $("#validarCampos").html("<h4 style='color: red'>Ha ocurrido un error</h4>");
         },
     });
 }
 
 function borrarElemento(idElemento){
+    //console.log(idElemento);
+
     $.ajax({
-        url:"http://144.22.228.79:80/api/Message/"+idElemento,
+        url:"http://144.22.228.79:80/api/Reservation/"+idElemento,
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
             swal({
                 title: "Desea eliminar este mensaje?",
-                text: respuesta.messageText,
+                text: respuesta.startDate,
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
@@ -217,17 +256,16 @@ function borrarElemento(idElemento){
                 if (ok) {
                     eliminar(idElemento);
                 } else {
-                  swal("Operación cancelada");
+                  swal("Operacion cancelada!");
                 }
               });
         }
     });
-
 }
 
 function eliminar(idElemento){
     $.ajax({
-        url: "http://144.22.228.79:80/api/Message/"+idElemento,
+        url: "http://144.22.228.79:80/api/Reservation/"+idElemento,
         type: "DELETE",
         contentType:"application/JSON",
         dataType: "JSON",
@@ -237,9 +275,9 @@ function eliminar(idElemento){
             traerInformacion();
         }
     });
-    swal("Mensaje eliminado", {
+    swal("Reserva cancelada", {
         icon: "success",
       });
-}
+};
 
 

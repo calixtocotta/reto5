@@ -47,7 +47,7 @@ public class serviciosReservation {
     }
 
     public Reservation update(Reservation reservation) {
-        if (reservation.getIdReservation() == null) {
+        if (reservation.getIdReservation() != null) {
             return metodosCrud.save(reservation);
         } else {
             Optional<Reservation> e = metodosCrud.getReservation(reservation.getIdReservation());

@@ -22,7 +22,7 @@ public interface interfaceReservation extends CrudRepository<Reservation, Intege
     //@Query("SELECT c.client, COUNT(c.client) FROM Reservation AS c group by COUNT(c.client) desc")
     public List<Object[]> countReservationByStartDate();
 
-    public List<Reservation> findAllByStartDateAfterAndStartDateAfter(Date dateOne, Date DateTwo);
+    public List<Reservation> findAllByStartDateAfterAndStartDateBefore(Date dateOne, Date DateTwo);
 
     public List<Reservation> findAllByStatus(String Status);
 }

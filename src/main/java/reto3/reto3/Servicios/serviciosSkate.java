@@ -18,67 +18,68 @@ import reto3.reto3.Entidad.Skate;
  */
 @Service
 public class serviciosSkate {
+
     @Autowired
     private RepositorioSkate metodosCrud;
-    
-    public List<Skate> getAll(){
+
+    public List<Skate> getAll() {
         return metodosCrud.getAll();
     }
-    
-    public Optional<Skate> getSkate(int id){
+
+    public Optional<Skate> getSkate(int id) {
         return metodosCrud.getSkate(id);
     }
-    
-    public Skate save(Skate skate){
-        if (skate.getId()==null){
+
+    public Skate save(Skate skate) {
+        if (skate.getId() == null) {
             return metodosCrud.save(skate);
-        }else{
-            Optional<Skate> evt=metodosCrud.getSkate(skate.getId());
-            if(evt.isEmpty()){
+        } else {
+            Optional<Skate> evt = metodosCrud.getSkate(skate.getId());
+            if (evt.isEmpty()) {
                 return metodosCrud.save(skate);
-            }else{
+            } else {
                 return skate;
             }
         }
     }
-    
-    public Skate update(Skate skate){
-        if(skate.getId()==null){
+
+    public Skate update(Skate skate) {
+        if (skate.getId() == null) {
             return metodosCrud.save(skate);
-        }else{
-            Optional<Skate> e=metodosCrud.getSkate(skate.getId());
-            if(!e.isEmpty()){
-                if(skate.getName()!=null){
+        } else {
+            Optional<Skate> e = metodosCrud.getSkate(skate.getId());
+            if (!e.isEmpty()) {
+                if (skate.getName() != null) {
                     e.get().setName(skate.getName());
                 }
-                if(skate.getBrand()!=null){
+                if (skate.getBrand() != null) {
                     e.get().setBrand(skate.getBrand());
                 }
-                if(skate.getYear()!=null){
+                if (skate.getYear() != null) {
                     e.get().setYear(skate.getYear());
                 }
-                if(skate.getDescription()!=null){
+                if (skate.getDescription() != null) {
                     e.get().setDescription(skate.getDescription());
                 }
-                if(skate.getCategory()!=null){
+                if (skate.getCategory() != null) {
                     e.get().setCategory(skate.getCategory());
                 }
                 metodosCrud.save(e.get());
                 return e.get();
-            }else{
+            } else {
                 return skate;
             }
         }
     }
-    
-    public boolean deleteSkate(int id){
-        
-        
-        Boolean aBoolean=getSkate(id).map(skate -> {
+
+    public boolean deleteSkate(int id) {
+
+        Boolean aBoolean = getSkate(id).map(skate -> {
             metodosCrud.delete(skate);
             return true;
-        }).orElse(aBoolean=false);
-        
+        }).orElse(aBoolean = false);
+
         return aBoolean;
     }
+
 }

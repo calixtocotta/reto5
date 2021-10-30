@@ -5,7 +5,7 @@
 function traerInformacion(){
     $("#resultado").html("<p class='loader text-center'>Cargando...</p>"); 
     $.ajax({
-        url:"http://localhost:80/api/Client/all",
+        url:"http://144.22.228.79:80/api/Client/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -42,7 +42,7 @@ function pintarRespuesta(items){
 
 function Editar(items){
     $.ajax({
-        url:"http://localhost:80/api/Client/"+items,
+        url:"http://144.22.228.79:80/api/Client/"+items,
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -93,7 +93,7 @@ function guardarInformacion(){
     let dataToSend=JSON.stringify(myData);
     //console.log(dataToSend);
     $.ajax({
-        url: "http://localhost:80/api/Client/save",
+        url: "http://144.22.228.79:80/api/Client/save",
         type: "POST",
         data: dataToSend,
         contentType:"application/JSON",
@@ -127,7 +127,7 @@ function editarInformacion(){
     };
     let dataToSendE=JSON.stringify(myDataEditar);
     $.ajax({
-        url:"http://localhost:80/api/Client/update",
+        url:"http://144.22.228.79:80/api/Client/update",
         type:"PUT",
         data:dataToSendE,
         contentType:"application/JSON",
@@ -151,24 +151,42 @@ function editarInformacion(){
 }
 
 function borrarElemento(idElemento){
-    let dataToSend=JSON.stringify(myData);
     $.ajax({
-        url: "http://localhost:80/api/Client/"+idElemento,
+        url:"http://144.22.228.79:80/api/Client/"+idElemento,
+        type:"GET",
+        datatype:"JSON",
+        success:function(respuesta){
+            swal({
+                title: "Desea eliminar este cliente?",
+                text: respuesta.name,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              }).then((ok) => {
+                if (ok) {
+                    eliminar(idElemento);
+                } else {
+                  swal("Operación cancelada");
+                }
+              });
+        }
+    });
+}
+
+function eliminar(idElemento){
+    $.ajax({
+        url: "http://144.22.228.79:80/api/Client/"+idElemento,
         type: "DELETE",
-        data: dataToSend,
         contentType:"application/JSON",
         dataType: "JSON",
         success:function(respuesta){
             $("#resultado").empty();
-            $("#validarCampos").html("<h4 style='color: green'>Se ha eliminado exitosamente</h4>");
-            setTimeout(
-                function(){ 
-                    document.getElementById("validarCampos").innerHTML = "";
-                }, 6000
-                );
             traerInformacion();
         }
     });
+    swal("Cliente eliminado", {
+        icon: "success",
+      });
 }
 
 

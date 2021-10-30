@@ -18,24 +18,24 @@ import javax.persistence.Table;
 public class Reservation implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Integer idReservation;
 
     private Date startDate;
 
     private Date devolutionDate;
-    private String status="created";
-    
+    private String status = "created";
+
     @ManyToOne
-    @JoinColumn(name ="skate")
-    @JsonIgnoreProperties(value={"reservations"})
+    @JoinColumn(name = "skate")
+    @JsonIgnoreProperties(value = {"reservations"})
     private Skate skate;
 
     @ManyToOne
-    @JoinColumn(name ="client")
-    @JsonIgnoreProperties(value={"reservations", "messages" })
+    @JoinColumn(name = "client")
+    @JsonIgnoreProperties(value = {"reservations", "messages"})
     private Client client;
-    
+
     @OneToOne
     @JsonIgnoreProperties("reservation")
     private Score score;
@@ -95,6 +95,5 @@ public class Reservation implements Serializable {
     public void setScore(Score score) {
         this.score = score;
     }
-    
 
 }

@@ -40,7 +40,7 @@ public class RepositorioReservation {
     }
     
     public List<Reservation> getReservationByPeriod(Date dateOne, Date dateTwo){
-        return crud.findAllByStartDateAfterAndStartDateAfter(dateOne, dateTwo);
+        return crud.findAllByStartDateAfterAndStartDateBefore(dateOne, dateTwo);
     }
     
     public List<CountClient> getTopClient(){

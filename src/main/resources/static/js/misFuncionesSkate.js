@@ -4,7 +4,7 @@ function traerInformacion(){location.reload(true);}
 
 function itemsCategory(){
     $.ajax({
-        url:"http://localhost:80/api/Category/all",
+        url:"http://144.22.228.79:80/api/Category/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -12,7 +12,6 @@ function itemsCategory(){
             mySelect+="<option value='null' id='select-category'>Selecione una categoria</option>"
             for(i=0;i<respuesta.length;i++){
                 mySelect+="<option value="+respuesta[i].id+" id="+respuesta[i].id+">"+ respuesta[i].name+"</option>";
-                
             }
             mySelect+="</select>"
             $("#resultado-category").html(mySelect); 
@@ -23,12 +22,13 @@ function itemsCategory(){
 function traerInformacion(){
     $("#resultado").html("<p class='loader text-center'>Cargando...</p>"); 
     $.ajax({
-        url:"http://localhost:80/api/Skate/all",
+        url:"http://144.22.228.79:80/api/Skate/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
             //console.log(respuesta);
             pintarRespuesta(respuesta);
+
         }
     });
 }
@@ -65,7 +65,7 @@ function pintarRespuesta(items){
 
 function Editar(items){
     $.ajax({
-        url:"http://localhost:80/api/Skate/"+items,
+        url:"http://144.22.228.79:80/api/Skate/"+items,
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -124,7 +124,7 @@ function guardarInformacion(){
     //console.log(dataToSend);
     
     $.ajax({
-        url: "http://localhost:80/api/Skate/save",
+        url: "http://144.22.228.79:80/api/Skate/save",
         type: "POST",
         data: dataToSend,
         contentType:"application/JSON",
@@ -163,7 +163,7 @@ function editarInformacion(){
     //console.log();
 
     $.ajax({
-        url: "http://localhost:80/api/Skate/update",
+        url: "http://144.22.228.79:80/api/Skate/update",
         type: "PUT",
         data: dataToSend,
         contentType:"application/JSON",
@@ -183,23 +183,40 @@ function editarInformacion(){
 }
 
 function borrarElemento(idElemento){
-
     $.ajax({
-        url: "http://localhost:80/api/Skate/"+idElemento,
+        url:"http://144.22.228.79:80/api/Skate/"+idElemento,
+        type:"GET",
+        datatype:"JSON",
+        success:function(respuesta){
+            swal({
+                title: "Desea eliminar esta Patineta?",
+                text: respuesta.name,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              }).then((ok) => {
+                if (ok) {
+                    eliminar(idElemento);
+                } else {
+                  swal("Operación cancelada");
+                }
+              });
+        }
+    });
+}
+
+function eliminar(idElemento){
+    $.ajax({
+        url: "http://144.22.228.79:80/api/Skate/"+idElemento,
         type: "DELETE",
-        data: dataToSend,
         contentType:"application/JSON",
         dataType: "JSON",
         success:function(respuesta){
             $("#resultado").empty();
-            $("#validarCampos").html("<h4 style='color: green'>Se ha eliminado exitosamente</h4>");
-            setTimeout(
-                function(){ 
-                    document.getElementById("validarCampos").innerHTML = "";
-                }, 6000
-                );
             traerInformacion();
-            
         }
     });
+    swal("Patineta eliminado", {
+        icon: "success",
+      });
 }

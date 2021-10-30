@@ -41,7 +41,7 @@ public class serviciosMessage {
     }
 
     public Message update(Message message) {
-        if (message.getIdMessage() == null) {
+        if (message.getIdMessage() != null) {
             return metodosCrud.save(message);
         } else {
             Optional<Message> e = metodosCrud.getMessage(message.getIdMessage());

@@ -58,7 +58,7 @@ public class ReservationWeb {
         return servicios.getStatusReport(); 
     }
     
-     @GetMapping("/report-categoria")
+     @GetMapping("/report-clients")
     public List<CountClient> getCountClient(){
         return servicios.getTopClient();
     }
