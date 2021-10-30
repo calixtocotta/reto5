@@ -7,7 +7,6 @@ import reto3.reto3.Entidad.Reservation;
 import reto3.reto3.Interfaz.interfaceReservation;
 import java.util.List;
 import java.util.Optional;
-import org.hibernate.annotations.common.util.impl.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import reto3.reto3.ControladorWeb.custom.CountClient;
@@ -45,7 +44,7 @@ public class RepositorioReservation {
     
     public List<CountClient> getTopClient(){
         List<CountClient> res=new ArrayList<>();
-        List<Object[]> report=crud.countReservationByStartDate();
+        List<Object[]> report=crud.countReservationByClient();
         for (int i = 0; i < report.size(); i++) {
             /*
             Client cli=(Client) report.get(i)[0];
@@ -53,7 +52,7 @@ public class RepositorioReservation {
             CountClient cc=new CountClient(cantidad,cli);
             res.add(cc);
             */
-            res.add(new CountClient((Log) report.get(i)[1],(Client)report.get(i)[0] ));
+            res.add(new CountClient((Long) report.get(i)[1],(Client)report.get(i)[0] ));
 
             
         }

@@ -13,19 +13,19 @@ import reto3.reto3.Entidad.Client;
  */
 public class CountClient {
 
-    private Log total;
+    private Long total;
     private Client client;
 
-    public CountClient(Log total, Client client) {
+    public CountClient(Long total, Client client) {
         this.total = total;
         this.client = client;
     }
     
-    public Log getTotal() {
+    public Long getTotal() {
         return total;
     }
 
-    public void setTotal(Log total) {
+    public void setTotal(Long total) {
         this.total = total;
     }
 

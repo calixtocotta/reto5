@@ -98,7 +98,7 @@ public class serviciosReservation {
         Date dateTwo = new Date();
         try {
             dateOne = parser.parse(d1);
-            dateTwo = parser.parse(d1);
+            dateTwo = parser.parse(d2);
         } catch (ParseException e) {
         }
         if (dateOne.before(dateTwo)) {
