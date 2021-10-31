@@ -121,6 +121,8 @@ function Editar(items){
             
             $("#skate-"+respuesta.skate.id).attr("selected", true)
             $("#client-"+respuesta.client.idClient).attr("selected", true)
+            $("#"+respuesta.status).attr("selected", true)
+            //console.log(respuesta.status);
             $("#startDate").val(fechaStartDate),
             $("#devolutionDate").val(fechaDevolutionDate),
             $("#idReservation").val(respuesta.idReservation),
@@ -132,13 +134,14 @@ function Editar(items){
 }
 
 function validar(opcion){
-    
     if ($('#startDate').val().length == 0 || $('#devolutionDate').val().length == 0) {
         $("#validarCampos").html("<h4 style='color: red'>Todos los campos son necesarios</h4>");
         if($("#skate").val() == "null"){
             $("#validarCampos").html("<h4 style='color: red'>Selecione una patineta</h4>");
         }else if( $("#client").val() == "null"){
             $("#validarCampos").html("<h4 style='color: red'>Selecione un cliente</h4>");
+        }else if($("#Status").val() == "null"){
+            $("#validarCampos").html("<h4 style='color: red'>Selecione un estado</h4>");
         }
         return false;
     }else{
@@ -165,10 +168,12 @@ function guardarInformacion(){
         startDate:$("#startDate").val(),
         devolutionDate:$("#devolutionDate").val(),
         skate:{"id":$("#skate").val()},
-        client:{"idClient":$("#client").val()}
+        client:{"idClient":$("#client").val()},
+        status:$("#Status").val()
     };
     let dataToSend=JSON.stringify(myData);
-    //console.log(dataToSend);
+    console.log(dataToSend);
+    
     $.ajax({
         url: "http://144.22.228.79:80/api/Reservation/save",
         type: "POST",
@@ -179,6 +184,7 @@ function guardarInformacion(){
             $(".registro").val(""),
             $("#select-skate").attr("selected", true),
             $("#select-client").attr("selected", true),
+            $("#select-status").attr("selected", true),
             $("#validarCampos").html("<h4 style='color: green'>Se ha registrado exitosamente</h4>");
             setTimeout(
                 function(){ 
@@ -197,6 +203,7 @@ function guardarInformacion(){
             }
         },
     });
+    
     
 }
 

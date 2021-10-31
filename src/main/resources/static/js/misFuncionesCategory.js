@@ -5,6 +5,7 @@
 //setInterval("traerInformacion()",60000);
 
 function traerInformacion(){
+    $("#id").hide()
     $("#resultado").html("<p class='loader text-center'>Cargando...</p>");
     $.ajax({
         url:"http://144.22.228.79:80/api/Category/all",
@@ -26,8 +27,6 @@ function pintarRespuesta(items){
     <th></th>
     </thead></tr>`;
     myTable += tableHeader;
-
-   
     for (i=0; i<items.length; i++ ) {
         
         myTable+="<tr>";

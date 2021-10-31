@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <title>Menu</title>
+        <title>REPORT MENU</title>
         <meta name="description" content=""/>
         <meta name="viewport" content="width=device-width"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,17 +18,17 @@
         <div class="header d-flex" id="menu">
             <div class=""><a><img id="photo"> <span id="user"></span></a></div>
             <div class="">
-                <a href="menu.html" class="active">Menu</a>
+                <a href="menu.html">Menu</a>
                 <a href="category.html">Category</a>
                 <a href="skate.html">Skate</a>
                 <a href="client.html" >Client</a>
                 <a onclick="location.href='message.html'">Message</a>
                 <a href="reservation.html">Reservation</a>
-                <a href="informe.html">Informe</a>
+                <a href="informe.html" class="active">Informe</a>
             </div>
         </div>
         <div align="center">
-            <h1>USER MENU</h1>
+            <h1>REPORT MENU</h1>
         </div>
         <br>
         <br>
@@ -39,45 +39,24 @@
             <div class="d-flex" id="img-contenedor">
                 <table borde="3" align="center">
                     <tr align="center">
-                        <td onclick="location.href='category.html'">
+                        <td onclick="location.href='informe-reservation.html'">
                             <div style="height: 100px;">
-                                <img class="imagenes" src="iconos/category.png">
+                                <img class="imagenes" src="iconos/informeReservation.png">
+                                
                             </div>
-                                <h1>Category</h1>
+                                <h1>Informe Reservation</h1>
                         </td>
-                        <td onclick="location.href='skate.html'">
+                        <td onclick="location.href='informe-countClient.html'">
                             <div style="height: 100px;">
-                                <img class="imagenes" src="iconos/skate.png">
+                                <img class="imagenes" src="iconos/informeCliente.png">
                             </div>
-                                <h1>Skate</h1>
+                                <h1>Informe Cliente</h1>
                         </td>
-                        <td onclick="location.href='client.html'">
+                        <td onclick="location.href='informe-status.html'">
                             <div style="height: 100px;">
-                                <img class="imagenes" src="iconos/client.png">
+                                <img class="imagenes" src="iconos/conteodereservas.png">
                             </div>
-                                <h1>Client</h1>
-                        </td>
-                    </tr>
-                    <tr align="center">
-                        <td onclick="location.href='message.html'">
-                            <div style="height: 100px;">
-                                <img class="imagenes" src="iconos/message.png">
-                            </div>
-                                <h1>Message</h1>
-                        </td>
-                        <td onclick="location.href='reservation.html'">
-                            <div style="height: 100px;">
-                                <img class="imagenes" src="iconos/reservation.png">
-                            </div>
-                                <h1>Reservation</h1>
-                            
-                        </td>
-                        <td onclick="location.href='informe.html'">
-                            <div style="height: 100px;">
-                                <img class="imagenes" src="iconos/informe3.png">
-                            </div>
-                                <h1>Informe</h1>
-                            
+                                <h1>Reservas completadas vs canceladas</h1>
                         </td>
                     </tr>
                 </table>

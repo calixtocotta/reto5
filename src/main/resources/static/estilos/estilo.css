@@ -186,6 +186,10 @@ table {
     justify-content: space-between;
     color: #fff;
 }
+.header > div:nth-child(2){
+    display: flex;
+    flex-wrap: wrap;
+}
 .header a{
     padding: 10px 20px;
     color: #fff;
@@ -258,6 +262,9 @@ tr {
 
 
 @media screen and (max-width: 700px) {
+    .header > div:nth-child(2){
+        margin-top: 40px;
+    }
     table {
         width:100%;
     }

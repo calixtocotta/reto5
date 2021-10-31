@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <link rel="stylesheet" href="estilos/estilo.css">
+    <title>Reservatión</title>
+    <link rel="icon" href="/iconos/reservation.png" />
+</head>
+
+<body>
+    <div class="header d-flex">
+        <div class=""><a><img id="photo"> <span id="user"></span></a></div>
+        <div class="">
+            <a href="menu.html">Menu</a>
+            <a href="category.html">Category</a>
+            <a href="skate.html">Skate</a>
+            <a href="client.html" >Client</a>
+            <a onclick="location.href='message.html'">Message</a>
+            <a href="reservation.html">Reservation</a>
+            <a href="informe.html" class="active">Informe</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="title text-center">Top Client</h1>
+        <div class="card" id="resultado"></div>
+    </div>
+    <div class="water-mark">Powered by NG ⚡</div>
+
+    <!-- TODOS LOS MALDITOS SCRIPTS DEBEN IR POR ACÁ, PERROHP -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/misFuncionesInformeCountClient.js"></script>
+    <script type="text/javascript" src="js/session.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            traerInformacion();
+            data_user();
+            $("id").hide()
+        })
+    </script>
+
+</body>
+
+</html>

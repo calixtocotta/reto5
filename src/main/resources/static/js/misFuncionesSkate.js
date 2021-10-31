@@ -20,13 +20,14 @@ function itemsCategory(){
 }
 
 function traerInformacion(){
+    $("#id").hide()
     $("#resultado").html("<p class='loader text-center'>Cargando...</p>"); 
     $.ajax({
         url:"http://144.22.228.79:80/api/Skate/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
-            //console.log(respuesta);
+            console.log(respuesta);
             pintarRespuesta(respuesta);
 
         }
